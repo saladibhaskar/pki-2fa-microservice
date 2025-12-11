@@ -1,0 +1,11 @@
+﻿# Python
+__pycache__/
+*.pyc
+.venv/
+# Docker
+docker-compose.override.yml
+# Local files
+.env
+encrypted_seed.txt
+# VSCode
+.vscode/
