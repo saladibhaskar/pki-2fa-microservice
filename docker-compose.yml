@@ -1,0 +1,22 @@
+services:
+  pki-2fa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pki-2fa
+    ports:
+      - "8080:8080"
+    volumes:
+      - seed-data:/data
+      - cron-output:/cron
+      # Mount key files (for local dev builds; container needs student_private.pem at build time too)
+      - ./student_private.pem:/app/student_private.pem:ro
+      - ./student_public.pem:/app/student_public.pem:ro
+      - ./instructor_public.pem:/app/instructor_public.pem:ro
+    environment:
+      - TZ=UTC
+    restart: unless-stopped
+
+volumes:
+  seed-data:
+  cron-output:
